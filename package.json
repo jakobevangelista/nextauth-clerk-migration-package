@@ -2,25 +2,40 @@
   "name": "nextauth-clerk-migration-package",
   "version": "0.1.0",
   "private": true,
-  "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
+  "type": "module",
+  "exports": {
+    "./patch": {
+      "import": "./dist/authPatch.js",
+      "types": "./dist/authPatch.d.ts"
+    },
+    "./helper": {
+      "import": "./dist/routeHelper.js",
+      "types": "./dist/routeHelper.d.ts"
+    },
+    "./wrapper": {
+      "import": "./dist/trickleWrapper.js",
+      "types": "./dist/trickleWrapper.d.ts"
+    }
   },
   "dependencies": {
+    "@clerk/nextjs": "^5.2.0",
+    "@typescript-eslint/eslint-plugin": "^7.15.0",
+    "next": "14.2.4",
+    "next-auth": "^5.0.0-beta.19",
+    "p-retry": "^6.2.0",
     "react": "^18",
-    "react-dom": "^18",
-    "next": "14.2.4"
+    "react-dom": "^18"
   },
   "devDependencies": {
-    "typescript": "^5",
+    "@types/eslint": "^8.56.10",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "eslint": "^8",
+    "eslint-config-next": "14.2.4",
     "postcss": "^8",
     "tailwindcss": "^3.4.1",
-    "eslint": "^8",
-    "eslint-config-next": "14.2.4"
+    "tsup": "^8.1.0",
+    "typescript": "^5"
   }
 }
