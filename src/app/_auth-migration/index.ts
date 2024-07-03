@@ -1,5 +1,5 @@
 import { auth } from "./authPatch";
-import { TrickleWrapperComponent } from "./clientComponent";
 import { createMigrationHandler } from "./routeHelper";
-const TrickleWrapper = TrickleWrapperComponent;
+import TrickleWrapper from "./trickleWrapper";
+// const TrickleWrapper = Components.TrickleWrapperComponent;
 export { auth, createMigrationHandler, TrickleWrapper };

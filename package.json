@@ -1,9 +1,10 @@
 {
   "name": "nextauth-clerk-migration-package",
-  "version": "0.1.4",
+  "version": "0.1.26",
   "type": "module",
   "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "files": [
+    "dist"],
   "dependencies": {
     "@clerk/nextjs": "^5.2.0",
     "@typescript-eslint/eslint-plugin": "^7.15.0",

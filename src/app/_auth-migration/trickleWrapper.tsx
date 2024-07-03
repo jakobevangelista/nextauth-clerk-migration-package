@@ -3,6 +3,7 @@
 import { UserButton, useSession, useSignIn, useUser } from "@clerk/nextjs";
 import pRetry from "p-retry";
 import { useEffect, useRef, useState } from "react";
+import React from "react";
 
 export default function TrickleWrapper({
   children,
