@@ -20,7 +20,6 @@
     "moduleResolution": "Bundler",
     "jsx": "preserve",
     "plugins": [{ "name": "next" }],
-    // "incremental": true,
     "outDir": "./dist",
     "declaration": true,
 

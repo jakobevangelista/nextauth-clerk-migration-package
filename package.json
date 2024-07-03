@@ -1,22 +1,9 @@
 {
   "name": "nextauth-clerk-migration-package",
-  "version": "0.1.0",
-  "private": true,
+  "version": "0.1.3",
   "type": "module",
-  "exports": {
-    "./patch": {
-      "import": "./dist/authPatch.js",
-      "types": "./dist/authPatch.d.ts"
-    },
-    "./helper": {
-      "import": "./dist/routeHelper.js",
-      "types": "./dist/routeHelper.d.ts"
-    },
-    "./wrapper": {
-      "import": "./dist/trickleWrapper.js",
-      "types": "./dist/trickleWrapper.d.ts"
-    }
-  },
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "dependencies": {
     "@clerk/nextjs": "^5.2.0",
     "@typescript-eslint/eslint-plugin": "^7.15.0",
