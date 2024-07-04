@@ -3,7 +3,7 @@ import { auth as ogAuth } from "@clerk/nextjs/server";
 // is the externalId but if exteranal id is not set, it will be
 // the clerk user id
 // this is used to only use one key for the user_metadata table in db calls
-export function auth() {
+export function authPatch() {
   const ogAuthRes = ogAuth();
   if (!ogAuthRes.userId) {
     return null;

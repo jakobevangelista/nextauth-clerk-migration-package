@@ -1,6 +1,6 @@
-// src/app/_auth-migration/authPatch.ts
+// src/authPatch.ts
 import { auth as ogAuth } from "@clerk/nextjs/server";
-function auth() {
+function authPatch() {
   const ogAuthRes = ogAuth();
   if (!ogAuthRes.userId) {
     return null;
@@ -9,12 +9,12 @@ function auth() {
   return ogAuthRes;
 }
 
-// src/app/_auth-migration/routeHelper.ts
-import { auth as auth2, clerkClient } from "@clerk/nextjs/server";
+// src/routeHelper.ts
+import { auth, clerkClient } from "@clerk/nextjs/server";
 function createMigrationHandler({ oldCheckHasSession, oldGetUserData }) {
   return async function udontknowthepainittooktomakethishappen() {
     const session = await oldCheckHasSession();
-    const { userId } = auth2();
+    const { userId } = auth();
     if (userId) return new Response("User already exists", { status: 222 });
     if (!session?.user?.email)
       return new Response("User not signed into next auth", { status: 222 });
@@ -57,5 +57,39 @@ function createMigrationHandler({ oldCheckHasSession, oldGetUserData }) {
   };
 }
 
-export { auth, createMigrationHandler };
+// src/batchQueueApiPoint.ts
+function createQueueApiPoint({ getAllUserIds, secret, apiPoint }) {
+  return async function lotsofthinking() {
+    const userIds = await getAllUserIds();
+    for (const id of userIds) {
+      await fetch(apiPoint, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${secret}`,
+        },
+        body: JSON.stringify({ id }),
+      });
+    }
+    return new Response("Success", {
+      status: 200,
+    });
+  };
+}
+
+// src/batchImportHandler.ts
+import { NextResponse } from "next/server";
+async function createBatchImportHandler(req, oldGetUserById) {
+  const body = await req.json();
+  console.log(body);
+  const user = await oldGetUserById(body.id);
+  return new NextResponse(JSON.stringify(user), { status: 200 });
+}
+export {
+  authPatch,
+  createBatchImportHandler,
+  createMigrationHandler,
+  createQueueApiPoint,
+};
+
 export { TrickleWrapper } from "./wrapper";
