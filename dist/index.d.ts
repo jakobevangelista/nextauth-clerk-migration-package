@@ -35,7 +35,7 @@ type UserPasswordHashingParams = {
   passwordDigest: string;
   passwordHasher: PasswordHasher;
 };
-type CreateUserParams = {
+export type CreateUserParams = {
   externalId?: string;
   emailAddress?: string[];
   phoneNumber?: string[];

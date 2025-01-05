@@ -5,12 +5,12 @@ export const dynamic = "force-dynamic";
 
 // prolly need to import these types from clerk, ask colin about
 // exporting these types
-type UserMetadataParams = {
+export type UserMetadataParams = {
   publicMetadata?: UserPublicMetadata;
   privateMetadata?: UserPrivateMetadata;
   unsafeMetadata?: UserUnsafeMetadata;
 };
-type PasswordHasher =
+export type PasswordHasher =
   | "argon2i"
   | "argon2id"
   | "bcrypt"
@@ -23,7 +23,7 @@ type PasswordHasher =
   | "scrypt_firebase"
   | "scrypt_werkzeug"
   | "sha256";
-type UserPasswordHashingParams = {
+export type UserPasswordHashingParams = {
   passwordDigest: string;
   passwordHasher: PasswordHasher;
 };
